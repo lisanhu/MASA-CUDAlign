@@ -794,7 +794,6 @@ __global__ void kernel_short_phase(const int i0, const int i1,
 
 
 
-    if (i >= i1) return;
 	if (i < i1) {
 		int block_i = (by*THREADS_COUNT)*ALPHA + i0;
 		const int flush_id = get_flush_id(i, i0, i1); // TODO why this line is not inside the else clause (see long phase)? Check this.
@@ -979,7 +978,6 @@ __global__ void kernel_long_phase(
     max_pos.y = -1;//blockResult[blockIdx.x].y;
     int max = -INF;//blockResult[bx].w;
 
-    if (i >= i1) return;
 	if (i < i1) {
 		const int block_i = (by*THREADS_COUNT)*ALPHA + i0;
 		if (block_i+THREADS_COUNT*ALPHA < i1) {
@@ -1131,7 +1129,6 @@ __global__ void kernel_single_phase(
     int max = -INF;//blockResult[0].w;
 
     int flush_id = get_flush_id(i, i0, i1);
-    if (i >= i1) return;
 	// TODO otimizar considerando warps
 	if (i < i1) {
 		const int block_i = (by*blockDim.x)*ALPHA +i0;
